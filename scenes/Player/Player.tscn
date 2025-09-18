@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://vq7miar55xr0"]
+[gd_scene load_steps=13 format=3 uid="uid://vq7miar55xr0"]
 
 [ext_resource type="Script" uid="uid://bu07y3tcx7yea" path="res://scripts/Player/Player.gd" id="1_p0vlq"]
 [ext_resource type="Texture2D" uid="uid://d3les0mlqncrc" path="res://assets/characters/tile_0000.png" id="2_3li8b"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://cp7kd1k4e4unu" path="res://scripts/Player/States/Dash.gd" id="4_qu4a1"]
 [ext_resource type="Script" uid="uid://c08lonpmyl1h6" path="res://scripts/Player/States/Jump.gd" id="6_cw2d6"]
 [ext_resource type="Script" uid="uid://bd3iuvqj375h6" path="res://scripts/Player/States/Move.gd" id="7_khinc"]
+[ext_resource type="AudioStream" uid="uid://caum788648p5g" path="res://assets/audio/jump.wav" id="9_dqp0f"]
+[ext_resource type="AudioStream" uid="uid://bwlwcbvtw8tra" path="res://assets/audio/hurt.wav" id="10_dqp0f"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qu4a1"]
 animations = [{
@@ -69,6 +71,12 @@ autoplay = "idle"
 [node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_v6fml")
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_dqp0f")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_dqp0f")
 
 [node name="States" type="Node" parent="."]
 

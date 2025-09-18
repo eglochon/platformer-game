@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=4 uid="uid://cgaqocg4t5pcy"]
+[gd_scene load_steps=6 format=4 uid="uid://cgaqocg4t5pcy"]
 
 [ext_resource type="TileSet" uid="uid://dw6uyfpgyryyd" path="res://resources/tileset.tres" id="1_6ovph"]
+[ext_resource type="Script" uid="uid://7ualyhjt03gk" path="res://scripts/Objects/Coin.gd" id="1_lrl65"]
 [ext_resource type="TileSet" uid="uid://ofo1whoab25w" path="res://resources/background.tres" id="1_odhdn"]
 [ext_resource type="PackedScene" uid="uid://vq7miar55xr0" path="res://scenes/Player/Player.tscn" id="2_bwv4p"]
+[ext_resource type="PackedScene" uid="uid://q3aod6mrxll0" path="res://scenes/Objects/Coin.tscn" id="5_76388"]
 
 [node name="RootNode" type="Node2D"]
+script = ExtResource("1_lrl65")
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
@@ -19,3 +22,41 @@ tile_set = ExtResource("1_6ovph")
 
 [node name="Player" parent="." instance=ExtResource("2_bwv4p")]
 position = Vector2(35, 168)
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Coin" parent="Node" instance=ExtResource("5_76388")]
+position = Vector2(72, 225)
+
+[node name="Coin2" parent="Node" instance=ExtResource("5_76388")]
+position = Vector2(99, 225)
+
+[node name="Coin3" parent="Node" instance=ExtResource("5_76388")]
+position = Vector2(153, 189)
+
+[node name="Coin4" parent="Node" instance=ExtResource("5_76388")]
+position = Vector2(189, 135)
+
+[node name="Coin5" parent="Node" instance=ExtResource("5_76388")]
+position = Vector2(207, 135)
+
+[node name="Coin6" parent="Node" instance=ExtResource("5_76388")]
+position = Vector2(261, 117)
+
+[node name="Coin7" parent="Node" instance=ExtResource("5_76388")]
+position = Vector2(333, 207)
+
+[node name="Coin8" parent="Node" instance=ExtResource("5_76388")]
+position = Vector2(351, 207)
+
+[node name="Coin9" parent="Node" instance=ExtResource("5_76388")]
+position = Vector2(369, 207)
+
+[node name="Coin10" parent="Node" instance=ExtResource("5_76388")]
+position = Vector2(423, 189)
+
+[node name="Coin11" parent="Node" instance=ExtResource("5_76388")]
+position = Vector2(477, 153)
+
+[node name="Coin12" parent="Node" instance=ExtResource("5_76388")]
+position = Vector2(549, 117)

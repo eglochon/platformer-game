@@ -16,7 +16,7 @@ func reset_node(player: Player) -> void:
 	await get_tree().create_timer(0.2).timeout
 	player.change_state("idle")
 
-func physics_process(delta: float, player: Player) -> void:
+func physics_process(_delta: float, player: Player) -> void:
 	var dash_node: Node = dash_animation.instantiate()
 	dash_node.flip_h = direction
 	dash_node.position = player.global_position

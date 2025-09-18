@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://q3aod6mrxll0"]
+
+[ext_resource type="Script" uid="uid://7ualyhjt03gk" path="res://scripts/Objects/Coin.gd" id="1_mq8qv"]
+[ext_resource type="Texture2D" uid="uid://dm8bxs6sskhbx" path="res://assets/tiles/tile_0151.png" id="1_unjf3"]
+[ext_resource type="Texture2D" uid="uid://ctv357qh2rrw6" path="res://assets/tiles/tile_0152.png" id="2_mq8qv"]
+[ext_resource type="AudioStream" uid="uid://kgtapl6v7p88" path="res://assets/audio/coin.wav" id="4_2j31t"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2j31t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_unjf3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_mq8qv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uwfpr"]
+radius = 8.0
+
+[node name="Coin" type="Area2D" node_paths=PackedStringArray("sprite_node", "sound_node")]
+script = ExtResource("1_mq8qv")
+sprite_node = NodePath("Sprite")
+sound_node = NodePath("Sound")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2j31t")
+autoplay = "default"
+frame_progress = 0.157203
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_uwfpr")
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_2j31t")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="Sound" to="." method="_on_sound_finished"]

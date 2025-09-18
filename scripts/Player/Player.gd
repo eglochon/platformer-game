@@ -2,10 +2,12 @@ extends CharacterBody2D
 class_name Player
 
 @onready var sprite: AnimatedSprite2D = $Sprite
+@onready var jump_sound: AudioStreamPlayer2D = $Jump
+@onready var hit_sound: AudioStreamPlayer2D = $Hit
 
 var max_speed: int = 8000
 var acceleration: int = 1000
-var jump_height: int = 15000
+var jump_height: int = 18000
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var friction: float = 0.22
@@ -30,8 +32,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
-		var target_vel: float = min(velocity.y + acceleration*delta, max_speed*delta)
-		velocity.y = lerp(velocity.y, target_vel, 0.6)
+		velocity.y += gravity * delta
 
 	var direction := Input.get_axis("move_left", "move_right")
 	if direction < 0:

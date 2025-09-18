@@ -3,6 +3,7 @@ class_name PlayerJumpState
 
 func reset_node(player: Player) -> void:
 	player.sprite.play("jump")
+	player.jump_sound.play()
 
 func physics_process(delta: float, player: Player) -> void:
 	if Input.is_action_pressed("move_right"):
