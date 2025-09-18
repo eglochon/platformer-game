@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://6xl3oger15yh"]
+
+[ext_resource type="Script" uid="uid://br603unfe8qha" path="res://scripts/GUI.gd" id="1_jbthi"]
+[ext_resource type="Texture2D" uid="uid://brqb6k1rhy233" path="res://assets/tiles/tile_0044.png" id="2_5j4t3"]
+[ext_resource type="FontFile" uid="uid://6bt30rwjod6r" path="res://assets/fonts/PixelOperator8.ttf" id="3_womn8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5j4t3"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_womn8"]
+content_margin_left = 4.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_5j4t3"]
+font = ExtResource("3_womn8")
+font_size = 8
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_jbthi")
+
+[node name="Panel" type="PanelContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5j4t3")
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+
+[node name="HealthBar" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+
+[node name="Heart1" type="TextureRect" parent="Panel/VBox/HealthBar"]
+layout_mode = 2
+texture = ExtResource("2_5j4t3")
+
+[node name="Heart2" type="TextureRect" parent="Panel/VBox/HealthBar"]
+layout_mode = 2
+texture = ExtResource("2_5j4t3")
+
+[node name="Heart3" type="TextureRect" parent="Panel/VBox/HealthBar"]
+layout_mode = 2
+texture = ExtResource("2_5j4t3")
+
+[node name="Heart4" type="TextureRect" parent="Panel/VBox/HealthBar"]
+layout_mode = 2
+texture = ExtResource("2_5j4t3")
+
+[node name="Score" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_womn8")
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_5j4t3")

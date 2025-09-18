@@ -4,6 +4,10 @@ class_name Player
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var jump_sound: AudioStreamPlayer2D = $Jump
 @onready var hit_sound: AudioStreamPlayer2D = $Hit
+@onready var death_sound: AudioStreamPlayer2D = $Death
+
+var health: int = 4
+var max_health: int = 4
 
 var max_speed: int = 8000
 var acceleration: int = 1000
@@ -48,3 +52,14 @@ func change_state(state_name: String) -> void:
 		var new_state = states.get(state_name)
 		current_state = new_state
 		current_state.reset_node(self)
+
+func take_damage(value: int) -> void:
+	health = clampi(health - value, 0, max_health)
+	if health == 0:
+		death_sound.play()
+	else:
+		hit_sound.play()
+
+func _on_death_finished() -> void:
+	if health == 0:
+		queue_free()

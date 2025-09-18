@@ -1,0 +1,79 @@
+[gd_scene load_steps=10 format=3 uid="uid://c5g7fht2j0u7m"]
+
+[ext_resource type="Script" uid="uid://bvabrprpjemcy" path="res://scripts/Enemies/Bat.gd" id="1_c87qa"]
+[ext_resource type="Texture2D" uid="uid://bjxe4jnfleq16" path="res://assets/characters/tile_0024.png" id="1_mokt8"]
+[ext_resource type="Texture2D" uid="uid://cm75n67mvqk8h" path="res://assets/characters/tile_0025.png" id="2_c87qa"]
+[ext_resource type="Texture2D" uid="uid://f6vc20d13hbw" path="res://assets/characters/tile_0026.png" id="3_5mdof"]
+[ext_resource type="AudioStream" uid="uid://5ajs6cxifh7g" path="res://assets/audio/audiomass-output.mp3" id="5_5mdof"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_omfbp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_mokt8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_c87qa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5mdof")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_c87qa")
+}],
+"loop": true,
+"name": &"move",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2q32x"]
+size = Vector2(12, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c87qa"]
+size = Vector2(10, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5mdof"]
+size = Vector2(14, 8)
+
+[node name="Bat" type="CharacterBody2D"]
+script = ExtResource("1_c87qa")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -2)
+sprite_frames = SubResource("SpriteFrames_omfbp")
+animation = &"move"
+autoplay = "move"
+frame_progress = 0.623391
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_2q32x")
+
+[node name="RayCast1" type="RayCast2D" parent="."]
+target_position = Vector2(0, -24)
+
+[node name="RayCast2" type="RayCast2D" parent="."]
+target_position = Vector2(0, 24)
+
+[node name="RayCast3" type="RayCast2D" parent="."]
+target_position = Vector2(-16, 0)
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_5mdof")
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_c87qa")
+debug_color = Color(0.927173, 0.267001, 0, 0.419608)
+
+[node name="DamangeBox" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="DamangeBox"]
+shape = SubResource("RectangleShape2D_5mdof")
+debug_color = Color(0.426279, 0.459313, 1, 0.42)
+
+[connection signal="finished" from="DeathSound" to="." method="_on_death_sound_finished"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="body_entered" from="DamangeBox" to="." method="_on_damage_box_body_entered"]
