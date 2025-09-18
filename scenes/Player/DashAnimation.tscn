@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://n3deab65gess"]
+
+[ext_resource type="Texture2D" uid="uid://ttg35d2pmifj" path="res://assets/characters/tile_0001.png" id="1_riyri"]
+[ext_resource type="Script" uid="uid://iya4xomutd28" path="res://scripts/Player/DashAnimation.gd" id="2_8ikm8"]
+
+[node name="DashAnimation" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0.588235)
+texture = ExtResource("1_riyri")
+script = ExtResource("2_8ikm8")
